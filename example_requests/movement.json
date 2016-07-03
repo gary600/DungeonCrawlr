@@ -1,0 +1,8 @@
+{
+	"connectType": "put_movement",
+	"data": {
+		"previousPosition": [231,435],
+		"moveDirection": 8,
+		"newPosition": [230,434]
+	}
+}

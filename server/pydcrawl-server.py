@@ -10,11 +10,10 @@ class loglevels:
 	FATAL = "FATAL"
 
 def log(str, loglevel):
-	output = "[{}/{}]: {}".format(time.strftime("%H:%M:%S"), loglevel, str)
+	output = "[{}] [{}]: {}".format(time.strftime("%H:%M:%S"), loglevel, str)
 	sys.stdout.write(output)
-	logfile = open("server.log", "a")
-	logfile.write(output)
-	logfile.close()
+	with open("server.log", "a") as logfile:
+		logfile.write(output)
 
 class ConnectError(Exception):
 	def __init__(self, value):

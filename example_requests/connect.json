@@ -1,5 +1,5 @@
 {
-	"connectType": "request_connect",
+	"connectType": ["request", "connect"],
 	"data": {
 		"username": "gary600",
 		"clientVersion": 0.1

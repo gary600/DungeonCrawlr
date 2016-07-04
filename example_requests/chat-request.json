@@ -1,0 +1,6 @@
+{
+	"connectType": ["get", "chat"],
+	"data": {
+		"number": 5
+	}
+}

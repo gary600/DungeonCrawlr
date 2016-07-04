@@ -1,5 +1,5 @@
 {
-	"connectType": "put_movement",
+	"connectType": ["put", "movement"],
 	"data": {
 		"previousPosition": [231,435],
 		"moveDirection": 8,

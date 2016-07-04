@@ -1,5 +1,5 @@
 {
-	"connectType": "put_chat",
+	"connectType": ["put", "chat"],
 	"data": {
 		"message": "hi",
 		"location": [230,434]

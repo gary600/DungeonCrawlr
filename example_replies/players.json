@@ -1,0 +1,10 @@
+{
+	"connectType": ["reply", "playerPositions"],
+	"data": {
+		"playerPositions": [
+			{"user": "Lr_", "pos": [343, 231]},
+			{"user": "gary600", "pos": [230, 434]},
+			{"user": "GreenGene", "pos": [564, 798]}
+		]
+	}
+}

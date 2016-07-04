@@ -1,0 +1,9 @@
+{
+	"connectType": ["reply", "chat"],
+	"data": {
+		"chatHistory": [
+			{"user": "gary600", "text": "hi"},
+			{"user": "Lr_", "text": "hi"}
+		]
+	}
+}

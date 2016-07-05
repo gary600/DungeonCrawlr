@@ -3,7 +3,10 @@ import socketserver
 import json
 import time
 import sys
+import argparse
+import configparser
 from enum import Enum
+import mysql.connector
 
 class serverInfo(Enum):
 	VERSION = 0.1
@@ -71,4 +74,8 @@ class ConnectionHandler(socketserver.BaseRequestHandler):
 			log("{} lost connection: Outdated server (client version {f})".format(self.client_address[0],self.data["data"]["clientVersion"]), logLevel.INFO)
 
 if __name__ == "__main__":
+	argparser = argparse.ArgumentParser(description="Hosts a server for DungeonCrawlr.")
+	argparser.add_argument("--server", "-s", action="store", default="localhost", required=False, dest="mysqlServerAddr", help="Address of the MySQL or MariaDB server to store data at. Default: localhost")
+	argparser.add_argument("--username", "-u", action="store", default="dungeoncrawlr", required=False, dest="mysqlUsername", help="Username to use to log into the MySQL / MariaDB server with. Default: dungeoncrawlr")
+	argparser.add_argument("--password", "-p", action="store", required=False, dest="mysqlPassword", help="Password of the account used to log into the MySQL / MariaDB server.")
 	

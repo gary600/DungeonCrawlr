@@ -3,11 +3,12 @@ import socketserver
 import json
 import time
 import sys
+from enum import Enum
 
-class serverInfo:
+class serverInfo(Enum):
 	VERSION = 0.1
 
-class loglevels:
+class logLevel(Enum):
 	INFO = "INFO"
 	WARN = "WARN"
 	FATAL = "FATAL"
@@ -45,7 +46,7 @@ class ConnectionHandler(socketserver.BaseRequestHandler):
 				raise ConnectError
 			if self.data["data"]["clientVersion"] != serverInfo.version:
 				raise OutdatedClientError
-			log("Incoming connection from {} with username {}".format(self.client_address[0], self.data["data"]["username"]), loglevels.INFO)
+			log("Incoming connection from {} with username {}".format(self.client_address[0], self.data["data"]["username"]), logLevel.INFO)
 			while True:
 				self.dataStreamRaw = self.request.recv(1024).strip()
 				self.dataStream = json.loads(self.dataStreamRaw.decode())
@@ -61,10 +62,13 @@ class ConnectionHandler(socketserver.BaseRequestHandler):
 					elif self.connectType[1] == "chat":
 						pass
 		except ValueError:
-			log("{} lost connection: Invalid JSON".format(self.client_address[0]), loglevels.INFO)
+			log("{} lost connection: Invalid JSON".format(self.client_address[0]), logLevel.INFO)
 		except ConnectError:
-			log("{} lost connection: Invalid request".format(self.client_address[0]), loglevels.WARN)
+			log("{} lost connection: Invalid request".format(self.client_address[0]), logLevel.WARN)
 		except OutdatedClientError:
-			log("{} lost connection: Outdated client (client version {f})".format(self.client_address[0],self.data["data"]["clientVersion"]), loglevels.INFO)
+			log("{} lost connection: Outdated client (client version {f})".format(self.client_address[0],self.data["data"]["clientVersion"]), logLevel.INFO)
 		except OutdatedServerError:
-			log("{} lost connection: Outdated server (client version {f})".format(self.client_address[0],self.data["data"]["clientVersion"]), loglevels.INFO)
+			log("{} lost connection: Outdated server (client version {f})".format(self.client_address[0],self.data["data"]["clientVersion"]), logLevel.INFO)
+
+if __name__ == "__main__":
+	
